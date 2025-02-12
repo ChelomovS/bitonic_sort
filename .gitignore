@@ -1,4 +1,15 @@
+# ides files
 .vscode
+.DS_Store
+compile_commands.json
+.cache
+
+# logs and files for debug
 log.out
+*.log
+
+# build
+build
+
+# other
 test_runner.sh
-.DS_Store  

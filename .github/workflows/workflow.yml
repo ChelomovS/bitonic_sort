@@ -1,0 +1,31 @@
+name: build action
+on: [push, pull_request]
+jobs:
+  release_build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: clone
+        id: checkout
+        uses: actions/checkout@v4
+      - name: install deps
+        run: |
+          sudo apt update 
+          sudo apt install pocl-opencl-icd opencl-headers ocl-icd-opencl-dev clinfo
+      - name: build
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --parallel `nproc`
+  debug_build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: clone
+        id: checkout
+        uses: actions/checkout@v4
+      - name: install deps
+        run: |
+          sudo apt update 
+          sudo apt install pocl-opencl-icd opencl-headers ocl-icd-opencl-dev clinfo
+      - name: build
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+          cmake --build build --parallel `nproc` 

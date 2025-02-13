@@ -1,5 +1,7 @@
 #include "config.hpp"
 
+#include <charconv>
+
 Config Config::read_config(const int argc, const char** argv) {
     Config configurations;
     for (int i = 1; i < argc; ++i) {

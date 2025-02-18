@@ -10,7 +10,7 @@ jobs:
       - name: install deps
         run: |
           sudo apt update 
-          sudo apt install pocl-opencl-icd opencl-headers ocl-icd-opencl-dev clinfo
+          sudo apt install pocl-opencl-icd opencl-headers ocl-icd-opencl-dev clinfo libgtest-dev
       - name: build
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
@@ -24,7 +24,7 @@ jobs:
       - name: install deps
         run: |
           sudo apt update 
-          sudo apt install pocl-opencl-icd opencl-headers ocl-icd-opencl-dev clinfo
+          sudo apt install pocl-opencl-icd opencl-headers ocl-icd-opencl-dev clinfo libgtest-dev
       - name: build
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug

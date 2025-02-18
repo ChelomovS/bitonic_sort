@@ -14,7 +14,7 @@ jobs:
       - name: build
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-          cmake --build build --parallel `nproc`
+          cmake --build build 
   debug_build:
     runs-on: ubuntu-24.04
     steps:
@@ -28,4 +28,4 @@ jobs:
       - name: build
         run: |
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
-          cmake --build build --parallel `nproc` 
+          cmake --build build

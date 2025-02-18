@@ -22,7 +22,7 @@ cl::Event OclApp::bitonic_sort(int* data, size_t data_size) {
     for (int stage = 1; stage <= stages; ++stage) {
         for (int phase_of_stage = 1; phase_of_stage <= stage; ++phase_of_stage) {
             cl::NDRange global(configurations_.global_size_);
-            cl::NDRange local(configurations_.local_size_); // use for local mem in future kernel
+            cl::NDRange local(configurations_.local_size_); 
             cl::EnqueueArgs Args(queue_, global, local);
 
             cl::Event event = bitonic_sort(Args, array_buffer, stage, phase_of_stage);
@@ -65,7 +65,7 @@ cl::Platform OclApp::select_platform() {
         if (number_devices > 0)
             return cl::Platform(platform);
     }
-    throw std::runtime_error("Platform is not selected ");
+    throw std::runtime_error("Platform is not selected!");
 }
 
 cl::Context OclApp::get_gpu_context(cl_platform_id platform_id) {

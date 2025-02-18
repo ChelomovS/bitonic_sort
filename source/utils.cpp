@@ -1,6 +1,8 @@
 #include "utils.hpp"
 
-bool check_sort(const cl::vector<int>& array) {
+#include <iostream>
+
+bool utils::check_sort(const cl::vector<int>& array) {
     if (array.empty()) 
         return true; 
 
@@ -9,4 +11,26 @@ bool check_sort(const cl::vector<int>& array) {
             return false;
 
     return true; 
+}
+
+unsigned int utils::nearest_pow_of_2(unsigned int number) {
+    if (number <= 1) {
+        return 1;
+    }
+
+    number -= 1;
+
+    number |= number >> 1;
+    number |= number >> 2;
+    number |= number >> 4;
+    number |= number >> 8;
+    number |= number >> 16;
+
+    return number + 1;
+}
+
+void utils::print_first_elements(const cl::vector<int>& array, int number_of_elems) {
+    for (auto i = 0; i < number_of_elems; ++i) {
+        std::cout << array[i] << " ";
+    }
 }

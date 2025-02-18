@@ -1,18 +1,10 @@
 #ifndef OCL_APP_HPP
 #define OCL_APP_HPP
 
-#ifndef CL_HPP_TARGET_OPENCL_VERSION 
-#define CL_HPP_MINIMUM_OPENCL_VERSION 120 
-#define CL_HPP_TARGET_OPENCL_VERSION 120 
-#endif 
-
-#define CL_HPP_CL_1_2_DEFAULT_BUILD
-#define CL_HPP_ENABLE_EXCEPTIONS
-
-#include "CL/opencl.hpp"
-
-#include "config.hpp"
 #include "utils.hpp"
+#include "config.hpp"
+
+#include <CL/opencl.hpp>
 
 class OclApp {
     private:
@@ -25,7 +17,7 @@ class OclApp {
     static cl::Platform select_platform(); 
     static cl::Context  get_gpu_context(cl_platform_id platform_id);
     static std::string  read_kernel_file(const char* path);
-
+    
     using bitonic_sort_t = cl::KernelFunctor<cl::Buffer, int, int>;
 
     public:

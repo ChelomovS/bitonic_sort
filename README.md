@@ -1,5 +1,4 @@
 # bitonic_sort
-# ParaCL
 
 ## Установка
 ```sh

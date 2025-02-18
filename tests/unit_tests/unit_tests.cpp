@@ -4,6 +4,7 @@
 
 #include <CL/opencl.hpp>
 #include <gtest/gtest.h>
+#include <climits>
 
 TEST(SORT, test_1) {
     cl::vector<int> vector_for_test{};

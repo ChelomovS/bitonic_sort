@@ -7,6 +7,7 @@
 #include <chrono>
 #include <algorithm>
 #include <CL/opencl.hpp>
+#include <climits> 
 
 int main() try {
     std::chrono::high_resolution_clock::time_point start_time, final_time;

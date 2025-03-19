@@ -19,7 +19,6 @@ endif()
 
 add_executable(${PROJECT_NAME}
     source/main.cpp
-    source/config.cpp
     source/ocl_app.cpp
     source/utils.cpp
 )

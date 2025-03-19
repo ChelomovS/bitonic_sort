@@ -12,6 +12,13 @@ else()
     message(STATUS "ANALYSE disabled")
 endif()
 
+if (COMPARE_CPU)
+    add_definitions(-DCOMPARE_CPU=1)
+    message(STATUS "COMPARE_CPU enabled")
+else()
+    message(STATUS "COMPARE_CPU disabled")
+endif()
+
 if(APPLE)
     set(OPENCL_CXX_HEADERS "/opt/homebrew/opt/opencl-clhpp-headers/include")
 endif()
@@ -21,7 +28,6 @@ aux_source_directory(unit_tests UNIT_TESTS)
 add_executable(unit_tests 
                ../source/utils.cpp
                ../source/ocl_app.cpp 
-               ../source/config.cpp
                ${UNIT_TESTS})
 target_link_libraries(unit_tests PRIVATE ${GTEST_BOTH_LIBRARIES})
 target_include_directories(unit_tests PRIVATE 

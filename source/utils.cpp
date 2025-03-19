@@ -30,6 +30,7 @@ unsigned int utils::nearest_pow_of_2(unsigned int number) {
 }
 
 void utils::print_first_elements(const cl::vector<int>& array, int number_of_elems) {
+    std::cout << "Вывод массива: ";
     for (auto i = 0; i < number_of_elems; ++i) {
         std::cout << array[i] << " ";
     }

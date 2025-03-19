@@ -48,18 +48,18 @@ int main() try {
         array_for_sort.push_back(INT_MAX);
     }
 
-    #if defined (COMPARE_CPU) 
+#if defined (COMPARE_CPU) 
     cl::vector<int> array_for_sort_for_CPU = array_for_sort;
-    #endif
+#endif
 
     size_t gpu_wall_time = application.bitonic_sort(array_for_sort.data(), array_for_sort.size());
     size_t gpu_pure_time = application.get_pure_gpu_time() / 1'000'000; 
     size_t data_transfer_time = application.get_data_transfer_time() / 1'000'000;
 
-    std::cout << "=== Performance Stat ===" << std::endl;
-    std::cout << ">>> GPU Total (Wall): " << gpu_wall_time      << " ms" << std::endl;
-    std::cout << ">>> Kernel Execution: " << gpu_pure_time      << " ms" << std::endl; 
-    std::cout << ">>> Data Transfer: "    << data_transfer_time << " ms" << std::endl;
+    dbgs << "=== Performance Stat ===" << std::endl;
+    dbgs << ">>> GPU Total (Wall): " << gpu_wall_time      << " ms" << std::endl;
+    dbgs << ">>> Kernel Execution: " << gpu_pure_time      << " ms" << std::endl; 
+    dbgs << ">>> Data Transfer: "    << data_transfer_time << " ms" << std::endl;
 
     if (utils::check_sort(array_for_sort)) {
         dbgs << "array is sorted" << std::endl;
@@ -73,8 +73,7 @@ int main() try {
     std::sort(array_for_sort_for_CPU.begin(), array_for_sort_for_CPU.end());
     final_time = std::chrono::high_resolution_clock::now();
     size_t cpu_wall_time  = std::chrono::duration_cast<std::chrono::milliseconds>(final_time - start_time).count();
-    assert(array_for_sort_for_CPU == array_for_sort); // should be true 
-
+    assert(array_for_sort_for_CPU == array_for_sort);
     std::cout << "CPU Time: " << cpu_wall_time << " ms" << std::endl;
     std::cout << "Speedup (Kernel vs CPU): " 
             << static_cast<float>(cpu_wall_time) / gpu_pure_time << std::endl;
@@ -85,6 +84,7 @@ int main() try {
     dbgs << "All checks passed" << std::endl;
 
     utils::print_first_elements(array_for_sort, real_data_size_);
+
 } catch (cl::BuildError &err) {
     std::cerr << "OCL BUILD ERROR: " << err.err() << ":" << err.what()
               << std::endl;

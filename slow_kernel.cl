@@ -1,4 +1,6 @@
-__kernel void bitonic_sort_global(__global int* data, int stage, int stage_pass, int direction) {
+__kernel void bitonic_sort_global (__global int* data, int stage, int stage_pass, int direction) {
+    // direсеtion == 1 - increase
+    
     int id = get_global_id(0); 
     int dist = 1 << (stage - stage_pass);
 
@@ -12,7 +14,7 @@ __kernel void bitonic_sort_global(__global int* data, int stage, int stage_pass,
         direction = 1 - direction;
         
     int greater = (left_elem > right_elem) ? left_elem : right_elem;
-    int lesser = (left_elem > right_elem) ? right_elem : left_elem;
+    int lesser  = (left_elem > right_elem) ? right_elem : left_elem;
 
     data[left_id]  = direction ? lesser : greater;
     data[right_id] = direction ? greater : lesser;

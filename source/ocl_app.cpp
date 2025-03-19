@@ -7,6 +7,9 @@
 #include <algorithm>
 
 long int OclApp::bitonic_sort(int* data, size_t data_size) {
+    if (data_size == 1) 
+        return 0;
+    
     size_t array_buf_size = data_size * sizeof(int);
     cl::vector<cl::Event> kernel_events;
     cl::Event copy_event;

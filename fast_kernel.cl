@@ -1,9 +1,11 @@
-__kernel void bitonic_sort_local(__global int* data, __local int* local_data, int stages_number, int direction) {
+__kernel void bitonic_sort_local (__global int* data, __local int* local_data, int stages_number, int direction) {
+    // direсеtion == 1 - increase
     int local_id = get_local_id(0);
     int work_group_size = get_local_size(0);
     int offset = get_group_id(0) * work_group_size;
-    local_data[local_id] = data[offset << 1 + local_id];
-    local_data[local_id + work_group_size] = data[offset << 1 + local_id + work_group_size];
+    
+    local_data[local_id] = data[offset * 2 + local_id];
+    local_data[local_id + work_group_size] = data[offset * 2 + local_id + work_group_size];
 
     barrier(CLK_LOCAL_MEM_FENCE);
 
@@ -26,6 +28,6 @@ __kernel void bitonic_sort_local(__global int* data, __local int* local_data, in
         }
     }
 
-    data[offset << 1 + local_id] = local_data[local_id];
-    data[offset << 1 + local_id + work_group_size] = local_data[local_id + work_group_size];
+    data[offset * 2 + local_id] = local_data[local_id];
+    data[offset * 2 + local_id + work_group_size] = local_data[local_id + work_group_size];
 }
